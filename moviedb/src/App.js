@@ -27,9 +27,24 @@ const App = () => {
         fetchFilms(searchInput);
     }, [searchInput]);
 
+  useEffect(() => {
+		const movieFaves= JSON.parse(
+			localStorage.getItem('react-moviedb')
+		);
+
+		if (movieFaves) {
+			setFaves(movieFaves);
+		}
+	}, []);
+    
+    const saveToLocalStorage = (items) => {
+		localStorage.setItem('react-moviedb', JSON.stringify(items));
+	};
+
     const saveFaveFilm = (movie)=> {
         const saveFaveList = [...faves, movie];
         setFaves(saveFaveList)
+        saveToLocalStorage(saveFaveList)
     }
 
     const removeFaves = (movie)=> {
