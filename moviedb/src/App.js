@@ -1,4 +1,3 @@
-  
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -13,20 +12,24 @@ const App = () => {
     const [faves, setFaves]=useState([])
 
         const fetchFilms = async (searchInput) => {
-		const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
+        const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
 
-		const response = await fetch(url);
-		const responseJson = await response.json();
+        const response = await fetch(url);
+        const responseJson = await response.json();
 
-		if (responseJson.Search) {
-			setMovies(responseJson.Search);
-		}
-	};
+        if (responseJson.Search) {
+            setMovies(responseJson.Search);
+        }
+    };
 
     useEffect(() => {
-		fetchFilms(searchInput);
-	}, [searchInput]);
+        fetchFilms(searchInput);
+    }, [searchInput]);
 
+    const saveFaveFilm = (movie)=> {
+        const saveFaveList = [...faves, movie];
+        setFaves(saveFaveList)
+    }
 
     return (
     <div className='container-fluid moviedb'>
@@ -35,13 +38,20 @@ const App = () => {
            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} /> 
        </div>
 
-        <div className='row' >
-            <FilmList movies={movies} faveComponent={SaveFaves}/>
-        </div>
-        
+        <div className='row'>
+                <FilmList
+                    movies={movies}
+                    handleFavesClick={saveFaveFilm}
+                    favouriteComponent={SaveFaves}
+                />
+            </div>
+            <div className='row d-flex align-items-center mt-4 mb-4'>
+                <FilmTop heading='Favourites' />
+            </div>
     </div>
     );
 };
 
 export default App;
+
 

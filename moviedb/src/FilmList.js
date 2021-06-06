@@ -15,7 +15,9 @@ const FaveComponent = props.faveComponent;
                         <p>{movie.Year}</p>
 
                     </div>
-					<div className='overlay d-flex align-items-center center-text justify-content-center'>
+                    <div
+						onClick={() => props.handleFavesClick(movie)}className='overlay d-flex align-items-center justify-content-center'
+					>
 						<FaveComponent />
 					</div>
 				</div>
