@@ -5,11 +5,12 @@ import FilmList from './FilmList';
 import FilmTop from './FilmTop';
 import SearchBar from './SearchBar';
 import SaveFaves from './SaveFaves';
+import RemoveFaves from './RemoveFaves';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchInput, setSearchInput]= useState('');
-    const [faves, setFaves]=useState([])
+    const [faves, setFaves]=useState([]);
 
         const fetchFilms = async (searchInput) => {
         const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
@@ -31,6 +32,14 @@ const App = () => {
         setFaves(saveFaveList)
     }
 
+    const removeFaves = (movie)=> {
+        const saveFaveList = faves.filter(
+            (fave) => fave.imdbID !== movie.imdbID
+        );
+         setFaves(saveFaveList);
+    };
+
+
     return (
     <div className='container-fluid moviedb'>
        <div className='row d-flex align-items-center mt-4 mb-4'>
@@ -42,16 +51,21 @@ const App = () => {
                 <FilmList
                     movies={movies}
                     handleFavesClick={saveFaveFilm}
-                    favouriteComponent={SaveFaves}
+                    faveComponent={SaveFaves}
                 />
             </div>
             <div className='row d-flex align-items-center mt-4 mb-4'>
-                <FilmTop heading='Favourites' />
+                <FilmTop heading='Your favourite films:' />
+            </div>
+              <div className='row'>
+                <FilmList
+                    movies={faves}
+                    handleFavesClick={removeFaves}
+                    faveComponent={RemoveFaves}
+                />
             </div>
     </div>
     );
 };
 
 export default App;
-
-
