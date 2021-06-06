@@ -1,0 +1,9 @@
+body {
+    background-color: #fafafa;
+}
+
+.moviedb > .row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+}
