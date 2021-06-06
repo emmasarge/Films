@@ -6,6 +6,7 @@ import FilmTop from './FilmTop';
 import SearchBar from './SearchBar';
 import SaveFaves from './SaveFaves';
 import RemoveFaves from './RemoveFaves';
+import Modal from './Modal';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -52,13 +53,16 @@ const App = () => {
             (fave) => fave.imdbID !== movie.imdbID
         );
          setFaves(saveFaveList);
+         saveToLocalStorage(saveFaveList);
     };
 
+    
 
     return (
     <div className='container-fluid moviedb'>
        <div className='row d-flex align-items-center mt-4 mb-4'>
-           <FilmTop heading='FilmBase' />
+           <img alt="film logo with camera" src="./filmlogo1.png" className='logo'></img><FilmTop heading='FilmBase' />
+          
            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} /> 
        </div>
 
@@ -69,8 +73,9 @@ const App = () => {
                     faveComponent={SaveFaves}
                 />
             </div>
-            <div className='row d-flex align-items-center mt-4 mb-4'>
-                <FilmTop heading='Your favourite films:' />
+            <div className='row d-flex align-items-center fave-film mt-4 mb-4'>
+                <FilmTop heading='Your favourite films:'/>
+                
             </div>
               <div className='row'>
                 <FilmList
