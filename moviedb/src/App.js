@@ -5,10 +5,12 @@ import './App.css';
 import FilmList from './FilmList';
 import FilmTop from './FilmTop';
 import SearchBar from './SearchBar';
+import SaveFaves from './SaveFaves';
 
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchInput, setSearchInput]= useState('');
+    const [faves, setFaves]=useState([])
 
         const fetchFilms = async (searchInput) => {
 		const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
@@ -27,14 +29,14 @@ const App = () => {
 
 
     return (
-    <div className='container moviedb'>
+    <div className='container-fluid moviedb'>
        <div className='row d-flex align-items-center mt-4 mb-4'>
            <FilmTop heading='FilmBase' />
            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} /> 
        </div>
 
-        <div className='row'>
-            <FilmList movies={movies}/>
+        <div className='row' >
+            <FilmList movies={movies} faveComponent={SaveFaves}/>
         </div>
         
     </div>
