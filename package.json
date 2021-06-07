@@ -1,7 +1,7 @@
  
   {
-    "homepage": "http://emmasarge.github.io/films",
-    "name": "films",
+    "homepage": "http://emmasarge.github.io/moviedb",
+    "name": "moviedb",
     "dependencies": {
     "bootstrap": "^5.0.1",
     "react-icons": "^4.2.0",
