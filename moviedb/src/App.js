@@ -16,6 +16,8 @@ const App = () => {
     const [faves, setFaves]=useState([]);
     const [modalPop, setModalPop]=useState(false);
 
+
+    // Set short timed Onload Modal for instructions for user
     
     useEffect(()=> {
         setTimeout(() => {
@@ -23,7 +25,7 @@ const App = () => {
         }, 2000);
     },[]);
   
-
+    // Fetch films from API
         const fetchFilms = async (searchInput) => {
         const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
 
@@ -49,7 +51,7 @@ const App = () => {
 		}
 	}, []);
     
-    
+    // Save favourite films for when page reloads
     
     const saveToLocalStorage = (items) => {
 		localStorage.setItem('react-moviedb', JSON.stringify(items));
@@ -72,9 +74,10 @@ const App = () => {
     
 
     return (
+        // Display of components user will see, Modal, SaveFilms, FilmList:
 <div className='container-fluid moviedb'>
         <div className="App">
-             
+            
             <Modal trigger={modalPop} setTrigger={setModalPop}>
                 <h3>Welcome to FilmBase</h3>
                 <p>Find your favourite films and save them.</p>

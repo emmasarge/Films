@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Search input to retrieve films from API
 const SearchBar = (props) => {
     return(
         <div className='col col-sm-6'>

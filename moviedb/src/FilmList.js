@@ -2,7 +2,7 @@ import React from 'react';
 
 const FilmList = (props) => {
 const FaveComponent = props.faveComponent;
-
+// Displays Film information from the API
 	return (
 		<>
 			{props.movies.map((movie, index) => (

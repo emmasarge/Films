@@ -1,5 +1,5 @@
 import React from 'react';
-
+// Headers for FilmBase and Favourite films
 const FilmTop = (props) => {
     return (
         <div className='col header'>
