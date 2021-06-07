@@ -8,10 +8,21 @@ import SaveFaves from './SaveFaves';
 import RemoveFaves from './RemoveFaves';
 import Modal from './Modal';
 
+
+
 const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchInput, setSearchInput]= useState('');
     const [faves, setFaves]=useState([]);
+    const [modalPop, setModalPop]=useState(false);
+
+    
+    useEffect(()=> {
+        setTimeout(() => {
+        setModalPop(true);
+        }, 2000);
+    },[]);
+  
 
         const fetchFilms = async (searchInput) => {
         const url = `https://www.omdbapi.com/?s=${searchInput}&apikey=9431dc8`;
@@ -38,6 +49,8 @@ const App = () => {
 		}
 	}, []);
     
+    
+    
     const saveToLocalStorage = (items) => {
 		localStorage.setItem('react-moviedb', JSON.stringify(items));
 	};
@@ -59,14 +72,25 @@ const App = () => {
     
 
     return (
-    <div className='container-fluid moviedb'>
+<div className='container-fluid moviedb'>
+        <div className="App">
+             
+            <Modal trigger={modalPop} setTrigger={setModalPop}>
+                <h3>Welcome to FilmBase</h3>
+                <p>Find your favourite films and save them.</p>
+                <p>Type in a film title in the search bar <br/>
+                Click on 'Save as Favourite'</p>
+                <p>Voila! Your top films will be saved</p>
+            </Modal>
+        </div>
+    
        <div className='row d-flex align-items-center mt-4 mb-4'>
            <img alt="film logo with camera" src="./filmlogo1.png" className='logo'></img><FilmTop heading='FilmBase' />
           
            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} /> 
        </div>
 
-        <div className='row'>
+        <div className='row movie-row'>
                 <FilmList
                     movies={movies}
                     handleFavesClick={saveFaveFilm}
@@ -77,7 +101,7 @@ const App = () => {
                 <FilmTop heading='Your favourite films:'/>
                 
             </div>
-              <div className='row'>
+              <div className='row movie-row'>
                 <FilmList
                     movies={faves}
                     handleFavesClick={removeFaves}
