@@ -9,7 +9,7 @@ const FaveComponent = props.faveComponent;
           
 				<div className='image-container container-fluid mb-4 d-flex row justify-content-center m-3'>
 					<div className='col col-sm-6 mt-4'>
-                    <img className='poster img-center' alt='movie poster'src={movie.Poster} alt='movie'></img></div>
+                    <img className='poster img-center' alt='movie poster'src={movie.Poster}></img></div>
                     <div className='movie-info text-wrap col col-sm-6 mt-4 text-center'>
                         <h3>{movie.Title}</h3>
                         <p>{movie.Year}</p>
