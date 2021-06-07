@@ -88,7 +88,8 @@ const App = () => {
         </div>
     
        <div className='row d-flex align-items-center mt-4 mb-4'>
-           <img alt="film logo with camera" src="./filmlogo1.png" className='logo'></img><FilmTop heading='FilmBase' />
+           <img alt="film logo with camera" src="./filmlogo1.png" className='logo'></img>
+           <FilmTop heading='FilmBase' />
           
            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} /> 
        </div>
